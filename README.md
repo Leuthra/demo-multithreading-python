@@ -21,6 +21,13 @@ python demo_multithreading.py --semua  # jalankan semua demo berurutan
 
 Angka di bagian atas file (`JUMLAH_FILE`, `JUMLAH_WORKER`, `BATAS_PRIMA`) boleh diubah untuk mencoba skenario lain saat presentasi.
 
+## Backup demo
+
+Dipakai hanya jika demo langsung terkendala teknis.
+
+- [`shots/video_demo.mp4`](shots/video_demo.mp4): rekaman layar saat `--semua` dijalankan (±1 menit), termasuk `top` saat Demo 2 dan `ps -T` saat Demo 3.
+- `shots/*.png` dan `hasil_demo.txt`: screenshot dan output lengkap program.
+
 ## Catatan
 
 - **Speedup multi-process tidak sampai 4x.** `hasil_demo.txt` dibuat di mesin dengan 8 core (Python 3.14), dan multi-process hasilnya 2,72x, bukan 4x. Ada dua penyebab. Pertama, jumlah core: di mesin dengan core lebih sedikit dari `JUMLAH_WORKER`, speedup paling banyak sama dengan jumlah core. Kedua, pembagian kerja tidak seimbang: `bagi_rentang()` membagi rentang angka sama rata, padahal mengecek angka besar lebih mahal. Rentang terakhir (1,5 juta–2 juta) memikul sekitar 35% total kerja, jadi speedup maksimalnya sekitar 2,8x. Ini terlihat di `shots/top_proses.txt`: 3 worker masih di sekitar 99% CPU, sedangkan worker dengan rentang paling ringan sudah turun ke 56%. Totalnya sekitar 350% (hampir 4 core). Bandingkan dengan `shots/top_thread.txt`: 4 thread totalnya hanya sekitar 100% (1 core) karena GIL.
