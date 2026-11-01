@@ -1,0 +1,14 @@
+$ top -H -b -n 1 -p 5816
+top - 22:16:24 up 17 min,  1 user,  load average: 2.67, 1.60, 1.16
+Threads: 5 total, 0 running, 5 sleep, 0 d-sleep, 0 stopped, 0 zombie
+%Cpu(s):  6.1 us,  1.8 sy,  0.0 ni, 90.3 id,  1.2 wa,  0.6 hi,  0.0 si,  0.0 st 
+MiB Mem :  15676.5 total,   4364.1 free,   4957.5 used,   7423.6 buff/cache     
+MiB Swap:  15676.0 total,  15676.0 free,      0.0 used.  10719.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   5816 romi      36  16  331092  23956  12452 S   0.0   0.1   0:13.82 python3
+   6415 romi      36  16  331092  23956  12452 S   0.0   0.1   0:00.00 pekerja+
+   6416 romi      36  16  331092  23956  12452 S   0.0   0.1   0:00.00 pekerja+
+   6417 romi      36  16  331092  23956  12452 S   0.0   0.1   0:00.00 pekerja+
+   6418 romi      36  16  331092  23956  12452 S   0.0   0.1   0:00.00 pekerja+
+

@@ -1,0 +1,91 @@
+
+================================================================
+  DEMO MULTITHREADING - KELOMPOK 6
+================================================================
+  Python      : 3.14.8
+  Core CPU    : 8 (logical)
+  PID program : 5816
+  GIL Python  : AKTIF
+
+================================================================
+  DEMO 1 - Pekerjaan I/O-bound (simulasi unduh file)
+================================================================
+  8 file, masing-masing butuh 1.0 detik menunggu jaringan.
+
+  [SINGLE-THREAD] Mengunduh file satu per satu...
+
+  Timeline (1 kolom = 0.16 detik)
+  file-1   MainThread |######                                            |
+  file-2   MainThread |      ######                                      |
+  file-3   MainThread |            ######                                |
+  file-4   MainThread |                  ######                          |
+  file-5   MainThread |                        ######                    |
+  file-6   MainThread |                               ######             |
+  file-7   MainThread |                                     ######       |
+  file-8   MainThread |                                           ###### |
+
+  Total waktu: 8.00 detik
+
+  [MULTI-THREAD] Mengunduh file dengan 4 thread...
+
+  Timeline (1 kolom = 0.04 detik)
+  file-1   thread_0   |########################                          |
+  file-2   thread_1   |########################                          |
+  file-3   thread_2   |########################                          |
+  file-4   thread_3   |########################                          |
+  file-5   thread_0   |                        ########################  |
+  file-6   thread_1   |                         ######################## |
+  file-7   thread_2   |                         ######################## |
+  file-8   thread_3   |                         ######################## |
+
+  Total waktu: 2.00 detik
+
+  Ringkasan:
+    Single-thread :   8.00 detik
+    Multi-thread  :   2.00 detik
+    Speedup       :   4.00x lebih cepat
+
+================================================================
+  DEMO 2 - Pekerjaan CPU-bound (menghitung bilangan prima)
+================================================================
+  Menghitung bilangan prima dari 2 sampai 2.000.000
+
+  [SINGLE-THREAD] satu thread menghitung semuanya...
+    Ditemukan 148.933 prima dalam 13.80 detik
+
+  [MULTI-THREAD] 4 thread, rentang dibagi rata...
+    Ditemukan 148.933 prima dalam 14.25 detik
+
+  [MULTI-PROCESS] 4 proses, rentang dibagi rata...
+    Ditemukan 148.933 prima dalam 5.07 detik
+
+  Ringkasan:
+    Single-thread :  13.80 detik
+    Multi-thread  :  14.25 detik  (0.97x)
+    Multi-process :   5.07 detik  (2.72x)
+
+  Catatan: di Python standar, GIL membuat hanya satu thread yang boleh
+  mengeksekusi bytecode pada satu waktu. Jadi thread tidak mempercepat
+  kerja CPU. Proses terpisah punya GIL sendiri-sendiri, sehingga bisa
+  benar-benar paralel di beberapa core.
+
+================================================================
+  DEMO 3 - Melihat thread di sistem operasi
+================================================================
+  PID program  : 5816
+  Thread aktif : 1 -> 5
+
+  Daftar thread (ID dari OS):
+    MainThread   native id = 5816
+    pekerja-1    native id = 6415
+    pekerja-2    native id = 6416
+    pekerja-3    native id = 6417
+    pekerja-4    native id = 6418
+
+  Selama 10 detik ke depan, cek di terminal lain:
+    Linux  : ps -T -p 5816      atau   top -H -p 5816
+    macOS  : ps -M 5816
+    Windows: Task Manager > Details > klik kanan kolom > Select columns > Threads
+
+  Semua thread di atas berada di SATU proses (PID sama), berbagi memori yang sama.
+  Thread pekerja selesai.

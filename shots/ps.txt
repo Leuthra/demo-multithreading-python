@@ -1,0 +1,7 @@
+$ ps -T -p 5816
+    PID    SPID TTY          TIME CMD
+   5816    5816 ?        00:00:13 python3
+   5816    6415 ?        00:00:00 pekerja-1
+   5816    6416 ?        00:00:00 pekerja-2
+   5816    6417 ?        00:00:00 pekerja-3
+   5816    6418 ?        00:00:00 pekerja-4

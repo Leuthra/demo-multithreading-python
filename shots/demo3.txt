@@ -1,0 +1,21 @@
+
+================================================================
+  DEMO 3 - Melihat thread di sistem operasi
+================================================================
+  PID program  : 5816
+  Thread aktif : 1 -> 5
+
+  Daftar thread (ID dari OS):
+    MainThread   native id = 5816
+    pekerja-1    native id = 6415
+    pekerja-2    native id = 6416
+    pekerja-3    native id = 6417
+    pekerja-4    native id = 6418
+
+  Selama 10 detik ke depan, cek di terminal lain:
+    Linux  : ps -T -p 5816      atau   top -H -p 5816
+    macOS  : ps -M 5816
+    Windows: Task Manager > Details > klik kanan kolom > Select columns > Threads
+
+  Semua thread di atas berada di SATU proses (PID sama), berbagi memori yang sama.
+  Thread pekerja selesai.

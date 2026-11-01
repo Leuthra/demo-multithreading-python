@@ -1,0 +1,11 @@
+$ top -p 7013,7577,7578,7581,7584,7585,7586     # 4 proses terpisah
+Tasks: 7 total, 3 running, 4 sleep, 0 d-sleep, 0 stopped, 0 zombie
+%Cpu(s):  7.9 us,  1.7 sy, 44.2 ni, 44.6 id,  0.8 wa,  0.5 hi,  0.3 si,  0.0 st 
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   7584 romi      36  16   36020  18788   7656 R  99.2   0.1   0:02.79 python3
+   7585 romi      36  16   36020  18788   7656 R  99.2   0.1   0:02.79 python3
+   7586 romi      36  16   36020  18788   7656 R  99.2   0.1   0:02.78 python3
+   7581 romi      36  16   36020  18796   7660 S  55.9   0.1   0:02.14 python3
+   7013 romi      36  16  331080  24008  12524 S   0.0   0.1   0:27.54 python3
+   7577 romi      36  16   21960  14320   7740 S   0.0   0.1   0:00.06 python3
+   7578 romi      36  16   35012  21400  11200 S   0.0   0.1   0:00.14 python3
